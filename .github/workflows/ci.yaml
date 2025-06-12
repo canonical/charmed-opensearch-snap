@@ -48,7 +48,7 @@ jobs:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
         with:
           snap: charmed-opensearch_${{env.version}}_amd64.snap
-          release: ${{env.channel}}/base22
+          release: ${{env.channel}}/test-base22
 
   test:
     name: Test Snap
