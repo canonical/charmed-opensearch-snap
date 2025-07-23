@@ -102,5 +102,5 @@ curl --cacert node-cm0.pem -XGET https://admin:admin@localhost:9200/_cluster/hea
 ## License
 The Charmed Opensearch Snap is free software, distributed under the Apache
 Software License, version 2.0. See
-[LICENSE](https://github.com/canonical/charmed-opensearch-snap/blob/main/licenses/LICENSE-snap)
+[LICENSE](https://github.com/canonical/charmed-opensearch-snap/blob/2/edge/licenses/LICENSE-snap)
 for more information.
