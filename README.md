@@ -1,6 +1,6 @@
-# OpenSearch-Snap
-[![Build and Test](https://github.com/canonical/opensearch-snap/actions/workflows/ci.yaml/badge.svg)](https://github.com/canonical/opensearch-snap/actions/workflows/ci.yaml)
-[![Publish](https://github.com/canonical/opensearch-snap/actions/workflows/release.yaml/badge.svg)](https://github.com/canonical/opensearch-snap/actions/workflows/release.yaml)
+# Charmed OpenSearch Snap
+[![Build and Test](https://github.com/canonical/charmed-opensearch-snap/actions/workflows/ci.yaml/badge.svg)](https://github.com/canonical/charmed-opensearch-snap/actions/workflows/ci.yaml)
+[![Publish](https://github.com/canonical/charmed-opensearch-snap/actions/workflows/release.yaml/badge.svg)](https://github.com/canonical/charmed-opensearch-snap/actions/workflows/release.yaml)
 
 [//]: # (<h1 align="center">)
 [//]: # (  <a href="https://opensearch.org/">)
@@ -14,12 +14,12 @@ analytics suite that makes it easy to ingest, search, visualize, and analyze dat
 
 
 ### Installation:
-[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/opensearch)
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/charmed-opensearch)
 
 or:
 ```
-sudo snap install opensearch --channel=2/edge
-sudo snap connect opensearch:process-control
+sudo snap install charmed-opensearch --channel=2/edge
+sudo snap connect charmed-opensearch:process-control
 ```
 
 ### Environment configuration:
@@ -30,11 +30,11 @@ sudo sysctl -w vm.max_map_count=262144
 sudo sysctl -w net.ipv4.tcp_retries2=5
 ```
 
-### Starting OpenSearch:
+### Starting Charmed OpenSearch:
 #### Creating certificates:
 ```
 # create the certificates
-sudo snap run opensearch.setup          \
+sudo snap run charmed-opensearch.setup          \
     --node-name cm0                     \
     --node-roles cluster_manager,data   \
     --tls-priv-key-root-pass root1234   \
@@ -43,40 +43,40 @@ sudo snap run opensearch.setup          \
     --tls-init-setup yes    # this creates the root and admin certs as well.
 ```
 
-#### Starting OpenSearch:
+#### Starting Charmed OpenSearch:
 ```
-sudo snap start opensearch.daemon
+sudo snap start charmed-opensearch.daemon
 ```
 
 #### Creating the Security Index:
 ```
-sudo snap run opensearch.security-init --tls-priv-key-admin-pass=admin1234
+sudo snap run charmed-opensearch.security-init --tls-priv-key-admin-pass=admin1234
 ```
 
-### Testing the OpenSearch setup:
+### Testing the Charmed OpenSearch setup:
 You can either consume the REST API yourself or see if the below commands succeed, and you see that the tests `"PASSED"` successfully: 
 ```
 # Check if cluster is healthy (green):
-sudo snap run opensearch.test-cluster-health-green
+sudo snap run charmed-opensearch.test-cluster-health-green
 > ....
 > PASSED
 
 
 # Check if node is up:
-sudo snap run opensearch.test-node-up
+sudo snap run charmed-opensearch.test-node-up
 > ....
 > PASSED
 
 
 # Check if the security index is well initialised:
-sudo snap run opensearch.test-security-index-created
+sudo snap run charmed-opensearch.test-security-index-created
 > ....
 > PASSED
 ```
 
 or:
 ```
-sudo cp /var/snap/opensearch/current/etc/opensearch/certificates/node-cm0.pem ./
+sudo cp /var/snap/charmed-opensearch/current/etc/opensearch/certificates/node-cm0.pem ./
 curl --cacert node-cm0.pem -XGET https://admin:admin@localhost:9200/_cluster/health?pretty
 > {
   "cluster_name": "opensearch-cluster",
@@ -100,7 +100,7 @@ curl --cacert node-cm0.pem -XGET https://admin:admin@localhost:9200/_cluster/hea
 ```
 
 ## License
-The Opensearch Snap is free software, distributed under the Apache
+The Charmed Opensearch Snap is free software, distributed under the Apache
 Software License, version 2.0. See
-[LICENSE](https://github.com/canonical/opensearch-snap/blob/main/licenses/LICENSE-snap)
+[LICENSE](https://github.com/canonical/charmed-opensearch-snap/blob/2/edge/licenses/LICENSE-snap)
 for more information.
