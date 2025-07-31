@@ -155,8 +155,8 @@ jobs:
           # Prometheus exporter can be queried
           sudo cp /var/snap/charmed-opensearch/current/etc/opensearch/certificates/node-cm0.pem ./
           cert=./node-cm0.pem
-          resp=$(curl -I --cacert ${cert} -XGET https://localhost:9200/_prometheus/metrics -u 'admin:admin')
-          if [[ "$resp" != *"200 OK"* ]]; then
+          resp=$(curl -s -o /dev/null -w "%{http_code}" --cacert ${cert} -XGET https://localhost:9200/_prometheus/metrics -u 'admin:admin')
+          if [[ "$resp" != "200" ]]; then
             exit 1
           fi
 
