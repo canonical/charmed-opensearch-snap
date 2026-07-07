@@ -64,7 +64,7 @@ function create_editable_cacerts_trust_store() {
         -deststorepass  changeit         \
         -noprompt
 
-    echo "-Djavax.net.ssl.trustStore=/var/snap/opensearch/current/etc/opensearch/certificates/cacerts.p12" | tee -a "${OPENSEARCH_PATH_CONF}/jvm.options"
+    echo "-Djavax.net.ssl.trustStore=/var/snap/charmed-opensearch/current/etc/opensearch/certificates/cacerts.p12" | tee -a "${OPENSEARCH_PATH_CONF}/jvm.options"
     echo "-Djavax.net.ssl.trustStorePassword=changeit" | tee -a "${OPENSEARCH_PATH_CONF}/jvm.options"
 }
 
